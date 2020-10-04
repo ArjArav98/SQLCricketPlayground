@@ -1,2 +1,2 @@
-# DjangoCricketPlayground
-A sample REST API server to learn Django and the Django REST Framework.
+# SQLCricketPlayground
+A sample cricket SQL playground to learn SQL. Also, an effort to create an open-source cricket stats query.
