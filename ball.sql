@@ -1,13 +1,13 @@
--- MariaDB dump 10.17  Distrib 10.5.5-MariaDB, for osx10.15 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.20, for macos10.15 (x86_64)
 --
 -- Host: localhost    Database: cricket
 -- ------------------------------------------------------
--- Server version	10.5.5-MariaDB
+-- Server version	8.0.20
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,16 +21,19 @@
 
 DROP TABLE IF EXISTS `ball`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ball` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `over` smallint(6) NOT NULL,
-  `runs_scored` tinyint(4) NOT NULL,
-  `batsman_on_strike` int(11) NOT NULL,
-  `is_extra` bit(1) NOT NULL,
-  `extra_type` enum('wide','no-ball','bye','leg-bye') DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int NOT NULL AUTO_INCREMENT,
+  `runs_scored` tinyint NOT NULL,
+  `number` smallint NOT NULL,
+  `on_strike_batsman` int NOT NULL,
+  `bowler` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_BallBatsmanPlayer` (`on_strike_batsman`),
+  KEY `FK_BallBowlerPlayer` (`bowler`),
+  CONSTRAINT `FK_BallBatsmanPlayer` FOREIGN KEY (`on_strike_batsman`) REFERENCES `player` (`id`),
+  CONSTRAINT `FK_BallBowlerPlayer` FOREIGN KEY (`bowler`) REFERENCES `player` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -51,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-30 10:06:52
+-- Dump completed on 2020-10-04 18:32:31

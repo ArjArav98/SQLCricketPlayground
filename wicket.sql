@@ -16,29 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `player`
+-- Table structure for table `wicket`
 --
 
-DROP TABLE IF EXISTS `player`;
+DROP TABLE IF EXISTS `wicket`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `player` (
+CREATE TABLE `wicket` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `fname` varchar(50) NOT NULL,
-  `lname` varchar(50) NOT NULL,
-  `dob` date NOT NULL,
+  `type` enum('bold','lbw','run-out','catch','hit-wicket') NOT NULL,
+  `dismissed_player` int NOT NULL,
+  `wicket_taking_player` int DEFAULT NULL,
+  `wicket_assisting_player` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `player`
+-- Dumping data for table `wicket`
 --
 
-LOCK TABLES `player` WRITE;
-/*!40000 ALTER TABLE `player` DISABLE KEYS */;
-INSERT INTO `player` VALUES (2,'Mahendra Singh','Dhoni','1981-07-07'),(3,'Ravindra','Jadeja','1981-07-07'),(4,'Dwayne','Bravo','1981-07-07'),(5,'Ravichandran','Ashwin','1981-07-07'),(6,'Francois','du Plessis','1981-07-07');
-/*!40000 ALTER TABLE `player` ENABLE KEYS */;
+LOCK TABLES `wicket` WRITE;
+/*!40000 ALTER TABLE `wicket` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wicket` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-10-04 18:32:45
+-- Dump completed on 2020-10-04 18:01:17
