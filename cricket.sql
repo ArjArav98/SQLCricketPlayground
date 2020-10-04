@@ -28,12 +28,16 @@ CREATE TABLE `ball` (
   `number` smallint(6) NOT NULL,
   `on_strike_batsman` int(11) NOT NULL,
   `bowler` int(11) NOT NULL,
+  `wicket` int(11) DEFAULT NULL,
+  `extra` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_BallBatsmanPlayer` (`on_strike_batsman`),
   KEY `FK_BallBowlerPlayer` (`bowler`),
+  KEY `FK_BallExtra` (`extra`),
   CONSTRAINT `FK_BallBatsmanPlayer` FOREIGN KEY (`on_strike_batsman`) REFERENCES `player` (`id`),
-  CONSTRAINT `FK_BallBowlerPlayer` FOREIGN KEY (`bowler`) REFERENCES `player` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  CONSTRAINT `FK_BallBowlerPlayer` FOREIGN KEY (`bowler`) REFERENCES `player` (`id`),
+  CONSTRAINT `FK_BallExtra` FOREIGN KEY (`extra`) REFERENCES `extra` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +46,7 @@ CREATE TABLE `ball` (
 
 LOCK TABLES `ball` WRITE;
 /*!40000 ALTER TABLE `ball` DISABLE KEYS */;
+INSERT INTO `ball` VALUES (2,1,1,2,5,NULL,NULL),(3,1,2,6,5,NULL,NULL),(4,1,3,2,5,NULL,NULL),(5,1,4,6,5,NULL,NULL),(6,1,5,2,5,NULL,NULL),(7,1,6,6,5,NULL,NULL),(8,0,7,2,5,NULL,1),(10,4,7,2,5,NULL,2);
 /*!40000 ALTER TABLE `ball` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -55,8 +60,9 @@ DROP TABLE IF EXISTS `extra`;
 CREATE TABLE `extra` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` enum('bye','leg-bye','wide','no-ball') NOT NULL,
+  `runs_given` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,6 +71,7 @@ CREATE TABLE `extra` (
 
 LOCK TABLES `extra` WRITE;
 /*!40000 ALTER TABLE `extra` DISABLE KEYS */;
+INSERT INTO `extra` VALUES (1,'wide',1),(2,'no-ball',1);
 /*!40000 ALTER TABLE `extra` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -129,4 +136,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-10-04 21:18:14
+-- Dump completed on 2020-10-05  2:59:43
