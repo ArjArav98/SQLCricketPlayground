@@ -16,28 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `ball`
+-- Table structure for table `wicket`
 --
 
-DROP TABLE IF EXISTS `ball`;
+DROP TABLE IF EXISTS `wicket`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `ball` (
+CREATE TABLE `wicket` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `over` smallint NOT NULL,
-  `runs_scored` tinyint NOT NULL,
-  `batsman_on_strike` int NOT NULL,
+  `type` enum('bold','lbw','run-out','catch','hit-wicket') NOT NULL,
+  `dismissed_player` int NOT NULL,
+  `wicket_taking_player` int DEFAULT NULL,
+  `wicket_assisting_player` int DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `ball`
+-- Dumping data for table `wicket`
 --
 
-LOCK TABLES `ball` WRITE;
-/*!40000 ALTER TABLE `ball` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ball` ENABLE KEYS */;
+LOCK TABLES `wicket` WRITE;
+/*!40000 ALTER TABLE `wicket` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wicket` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-10-04 17:30:20
+-- Dump completed on 2020-10-04 18:01:17
