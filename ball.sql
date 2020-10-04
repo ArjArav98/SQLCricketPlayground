@@ -26,8 +26,13 @@ CREATE TABLE `ball` (
   `id` int NOT NULL AUTO_INCREMENT,
   `over` smallint NOT NULL,
   `runs_scored` tinyint NOT NULL,
-  `batsman_on_strike` int NOT NULL,
-  PRIMARY KEY (`id`)
+  `on_strike_batsman` int NOT NULL,
+  `bowler` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_BallBatsmanPlayer` (`on_strike_batsman`),
+  KEY `FK_BallBowlerPlayer` (`bowler`),
+  CONSTRAINT `FK_BallBatsmanPlayer` FOREIGN KEY (`on_strike_batsman`) REFERENCES `player` (`id`),
+  CONSTRAINT `FK_BallBowlerPlayer` FOREIGN KEY (`bowler`) REFERENCES `player` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -49,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-10-04 17:30:20
+-- Dump completed on 2020-10-04 18:17:00
