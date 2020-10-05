@@ -87,6 +87,8 @@ CREATE TABLE `player` (
   `fname` varchar(50) NOT NULL,
   `lname` varchar(50) NOT NULL,
   `dob` date NOT NULL,
+  `dominant_batting_hand` enum('left','right') NOT NULL DEFAULT 'right',
+  `dominant_bowling_hand` enum('left','right') NOT NULL DEFAULT 'right',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -97,7 +99,7 @@ CREATE TABLE `player` (
 
 LOCK TABLES `player` WRITE;
 /*!40000 ALTER TABLE `player` DISABLE KEYS */;
-INSERT INTO `player` VALUES (2,'Mahendra Singh','Dhoni','1981-07-07'),(3,'Ravindra','Jadeja','1981-07-07'),(4,'Dwayne','Bravo','1981-07-07'),(5,'Ravichandran','Ashwin','1981-07-07'),(6,'Francois','du Plessis','1981-07-07');
+INSERT INTO `player` VALUES (2,'Mahendra Singh','Dhoni','1981-07-07','right','right'),(3,'Ravindra','Jadeja','1981-07-07','right','right'),(4,'Dwayne','Bravo','1981-07-07','right','right'),(5,'Ravichandran','Ashwin','1981-07-07','right','right'),(6,'Francois','du Plessis','1981-07-07','right','right');
 /*!40000 ALTER TABLE `player` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,4 +138,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-10-05  2:59:43
+-- Dump completed on 2020-10-05  8:17:18
